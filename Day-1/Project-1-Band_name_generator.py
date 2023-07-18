@@ -1,3 +1,5 @@
+# Band name generator Project
+
 #1. Create a greeting for your program.
 print("\nHello there!Welcome to the Band Name Generator!\nWe are here to help you choose your band name.\n\nPlease answer the following questions\n")
 
