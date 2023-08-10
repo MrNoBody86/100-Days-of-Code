@@ -10,27 +10,12 @@
 ## Cards are not removed from the deck as they are drawn.
 ## The computer is the dealer.
 
-##################### Hints #####################
+###############################################################
 
-#Hint 1: Go to this website and try out the Blackjack game: 
-#   https://games.washingtonpost.com/games/blackjack/
-#Then try out the completed Blackjack project here: 
-#   http://blackjack-final.appbrewery.repl.run
 import random
 from art import logo
 
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-
-user = {
-    "card" : [],
-    "score" : 0,
-}
-
-computer = {
-    "card" : [],
-    "score" : 0,
-}
-
 
 def clear():
     """clears the terminal(only for vscode)"""
@@ -43,35 +28,16 @@ def clear():
     elif sys.platform.startswith('win32'):
         os.system('cls')
 
-def deal():
-    """At the start of the game distributes two cards to each player"""
-    user["card"].append(random.choice(cards))
-    user["card"].append(random.choice(cards))
-    computer["card"].append(random.choice(cards))
-    computer["card"].append(random.choice(cards))
-    Ace_value(user)
-    Ace_value(computer)
-    
-
 def Score_calculator(player):
     """Calcutes current score of the player."""
-    player["score"] = 0
-    for card in player["card"]:
-            player["score"] += card
-
-def Ace_value(player):
-    """Dicides the value of ace if present."""
-    Score_calculator(player)
-    for card in player["card"] :
-        if card == 11 and player["score"] > 21 :
-            i = player["card"].index(card)
-            player["card"][i] = 1
-        
-            
+    player["score"] = sum(player["card"])
+    if 11 in player["card"] and player["score"] > 21 :
+        player["card"][player["card"].index(11)] = 1
+      
 def hit(player):
     """Adds a card."""
     player['card'].append(random.choice(cards))
-    Ace_value(player)
+    Score_calculator(player)
 
 def view_current_score():
     """Print the current score to the user."""
@@ -84,20 +50,30 @@ def end_game():
     print(f"    Computer's final hand: {computer['card']}, final score: {computer['score']}")
 
 play = True
+clear()
 while play :
     re = input("Do you want to play a game of Blackjack? Type 'y' or 'n':").lower()
+    user = {
+        "card" : [],
+        "score" : 0,
+    }
+    computer = {
+        "card" : [],
+        "score" : 0,
+    }
     if re == 'y' :
         clear()
-        deal()
         print(logo)
+        for _ in range(2):
+            hit(user)
+            hit(computer)
         view_current_score()
         if user['score'] == 21 :
-            hit(computer) 
             end_game()
             if computer["score"] == 21 :
                 print("Draw.")
             else:
-                print("Win with a Blackjack")
+                print("Win with a Blackjack.")
         else:
             another_card = True
             while another_card :
@@ -107,34 +83,29 @@ while play :
                     if user["score"] > 21 :
                         end_game()
                         print("You went over. You lose.")
-                        exit()
+                        break
                     elif user["score"] == 21 :
-                        if computer["score"] == 21 :
-                            end_game()
-                            print("Draw.")
-                            exit()
-                        elif computer["score"] < 21 :
-                            while computer["score"] < 21:
+                        if computer["score"] < 22 :
+                            while computer["score"] < 17:
                                 hit(computer)
                             if computer["score"] == 21 :
                                 end_game()
                                 print("Draw.")
-                                exit()
+                                break
                             else :
                                 end_game()
                                 print("You win!")
-                                exit()
+                                break
                         else:
                             end_game()
                             print("You win!")
-                            exit()
+                            break
                     else :
                         view_current_score()
-                        result = input("Type 'y' to get another card, type 'n' to pass:").lower()
                 else :
                     another_card =False
-            if result == 'n' :
-                if computer["score"] < 21 :
+            if ac == 'n' :
+                while computer["score"] < 17:
                     hit(computer)
                 end_game()
                 if computer["score"] > 21 or user["score"] > computer["score"]:
@@ -145,10 +116,3 @@ while play :
                     print("You lose.")
     else :
         play = False
-        
-
-
-            
-
-
-
