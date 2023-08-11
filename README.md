@@ -2,7 +2,7 @@
 Python Bootcamp repo
 
 ### Completed Days
-Day 1 to 10
+- Day 1 to 10
 
 ## Capstone projects
-The Blackjack Capstone Project (Day - 11)
+- The Blackjack game (Day - 11)
