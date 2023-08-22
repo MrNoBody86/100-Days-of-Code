@@ -5,7 +5,8 @@ Python Bootcamp repo
 - Day 1 to 14
 
 ### Proficiency Level
-- Beginner
+- Beginner (completed)
+- Intermediate
 
 ## Capstone projects
 - The Blackjack game (Day - 11)
