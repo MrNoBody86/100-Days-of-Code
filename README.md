@@ -4,7 +4,7 @@ Python Bootcamp repo
 
 ## Completed Days
 
-- Day 1 to 22
+- Day 1 to 23
 
 ### Proficiency Level
 
@@ -14,3 +14,4 @@ Python Bootcamp repo
 ## Capstone projects
 
 - The Blackjack game (Day - 11)
+- The Turtle Crossing (Day - 23)
