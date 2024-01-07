@@ -6,7 +6,8 @@ class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
         self.score = 0
-        self.highscore = 0
+        with open("Day-20to29\Day-24\snake-game _2.0\data.txt") as data_file : # Relative path
+            self.highscore = eval(data_file.read())
         self.penup()
         self.hideturtle()
         self.color("white")
@@ -21,6 +22,9 @@ class Scoreboard(Turtle):
     def reset(self):
         if self.score > self.highscore :
             self.highscore = self.score
+            with open("Day-20to29\Day-24\snake-game _2.0\data.txt",mode="w") as data_file :
+                data_file.write(str(self.highscore))
+            
         self.score = 0
         self.score_update()
 
