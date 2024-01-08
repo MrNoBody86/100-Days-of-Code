@@ -12,17 +12,17 @@
 #             temperature.append(int(row[1]))
 #     print(temperature)
 
-# import pandas as pd
+import pandas as pd
 
-# data = pd.read_csv("Day-20to29\Day-25\weather_data.csv")
+data = pd.read_csv("Day-20to29\Day-25\weather_data.csv")
 
-# print(data["temp"])
+print(data["temp"])
 
 # data_dict = data.to_dict()
 # print(data_dict)
 
-# temp_list = data["temp"].to_list()
-# print(temp_list)
+temp_list = data["temp"].to_list()
+print(temp_list)
 
 # avg = data["temp"].mean()
 # print(avg)
@@ -67,20 +67,20 @@
 # df.to_csv("Day-20to29\Day-25\Squirrel_Primary_Fur_Color_Data.csv")
 
 #Central Park Squirrel Data Analysis
-import pandas
+# import pandas
 
-data = pandas.read_csv("Day-20to29\Day-25\\2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20240107.csv")
-grey_squirrels_count = len(data[data["Primary Fur Color"] == "Gray"])
-red_squirrels_count = len(data[data["Primary Fur Color"] == "Cinnamon"])
-black_squirrels_count = len(data[data["Primary Fur Color"] == "Black"])
-print(grey_squirrels_count)
-print(red_squirrels_count)
-print(black_squirrels_count)
+# data = pandas.read_csv("Day-20to29\Day-25\\2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20240107.csv")
+# grey_squirrels_count = len(data[data["Primary Fur Color"] == "Gray"])
+# red_squirrels_count = len(data[data["Primary Fur Color"] == "Cinnamon"])
+# black_squirrels_count = len(data[data["Primary Fur Color"] == "Black"])
+# # print(grey_squirrels_count)
+# # print(red_squirrels_count)
+# # print(black_squirrels_count)
 
-data_dict = {
-    "Fur Color": ["Gray", "Cinnamon", "Black"],
-    "Count": [grey_squirrels_count, red_squirrels_count, black_squirrels_count]
-}
+# data_dict = {
+#     "Fur Color": ["Gray", "Cinnamon", "Black"],
+#     "Count": [grey_squirrels_count, red_squirrels_count, black_squirrels_count]
+# }
 
-df = pandas.DataFrame(data_dict)
-df.to_csv("Day-20to29\Day-25\Squirrel_Primary_Fur_Color_Data.csv")
+# df = pandas.DataFrame(data_dict)
+# df.to_csv("Day-20to29\Day-25\Squirrel_Primary_Fur_Color_Data.csv")
