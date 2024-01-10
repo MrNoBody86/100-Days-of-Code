@@ -13,5 +13,5 @@ Python Bootcamp repo
 
 ## Capstone projects
 
-- The Blackjack game (Day - 11)
-- The Turtle Crossing (Day - 23)
+- The Blackjack game [Day - 11](Day-10to19/Day-11)
+- The Turtle Crossing [Day - 23](Day-20to29/Day-23)
