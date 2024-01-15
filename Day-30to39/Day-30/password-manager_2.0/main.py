@@ -1,9 +1,10 @@
 from tkinter import Tk,END,Canvas,PhotoImage,Label,Entry,Button
 from tkinter import messagebox
 from random import choice,randint,shuffle
+import json
 import pyperclip
 
-
+FILE_PATH = "Day-30to39\\Day-30\\password-manager_2.0\\data.json"
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -30,22 +31,58 @@ def generate_password():
     pyperclip.copy(password)
 
 
+# ---------------------------- FIND PASSWORD ------------------------------- #
+def find_password():
+    website = website_entry.get()
+    try :
+        with open(FILE_PATH,encoding="utf-8",mode= "r") as data_file:
+            #Reading old data
+            data = json.load(data_file)
+    except FileNotFoundError:
+            messagebox.showinfo(title="FileNotFoundError", message="No Data File Found.")
+    else :
+        for item in data :
+            if website == item.key :
+                messagebox.showinfo(title= website, message=f"These are the details entered: \nEmail: {item['email']} "
+                                                      f"\nPassword: {item['password']} ")
+
+
+
+
+
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
     website = website_entry.get()
     email = email_entry.get()
     password = password_entry.get()
+    new_data = {
+        website :{
+            "email":email,
+            "password":password,
+        }
+    }
 
     if len(website) == 0 or len(password) == 0:
         messagebox.showinfo(title="Oops", message="Please make sure you haven't left any fields empty.")
     else:
-        is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email} "
-                                                      f"\nPassword: {password} \nIs it ok to save?")
-        if is_ok:
-            with open("Day-20to29\\Day-29\\project-27-password-manager\\data.txt",encoding="utf-8",mode= "a") as data_file:
-                data_file.write(f"{website} | {email} | {password}\n")
-                website_entry.delete(0, END)
-                password_entry.delete(0, END)
+        try :
+            with open(FILE_PATH,encoding="utf-8",mode= "r") as data_file:
+                #Reading old data
+                data = json.load(data_file)
+        except FileNotFoundError:
+            with open(FILE_PATH,encoding="utf-8",mode= "w") as data_file:
+                # Saving updated data
+                json.dump(new_data, data_file,indent=4)
+        else :
+            #Updating old data with new data
+            data.update(new_data)
+
+            with open(FILE_PATH,encoding="utf-8",mode= "w") as data_file:
+                # Saving updated data
+                json.dump(new_data, data_file,indent=4)
+        finally:
+            website_entry.delete(0, END)
+            password_entry.delete(0, END)
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -71,24 +108,25 @@ password_label.grid(column=0,row=3)
 
 # Entry
 
-website_entry = Entry(width=35)
+website_entry = Entry(width=21)
 website_entry.focus()
-website_entry.grid(column=1,row=1,columnspan=2)
+website_entry.grid(column=0,row=1,columnspan=3)
 
 email_entry = Entry(width=35)
 email_entry.insert(0,"ayushchauksey08@gmail.com")
 email_entry.grid(column=1,row=2,columnspan=2)
 
 password_entry = Entry(width=21)
-password_entry.grid(column=1,row=3)
+password_entry.grid(column=0,row=3,columnspan=3)
 
 #Button
 
-password_button = Button(text="Generate Password",command=generate_password)
+password_button = Button(text="Generate Password",width=14,command=generate_password)
 password_button.grid(column=2,row=3)
 
 add_button = Button(text="Add",width=36,command=save)
 add_button.grid(column=1,row=4,columnspan=2)
 
-
+search_button = Button(text="Search",width=14)
+search_button.grid(column=2,row=1)
 window.mainloop()
