@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Tk,END,Canvas,PhotoImage,Label,Entry,Button
 from tkinter import messagebox
 from random import choice,randint,shuffle
 import pyperclip
@@ -11,7 +11,10 @@ import pyperclip
 
 def generate_password():
 
-    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+                'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F',
+                  'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+                    'W', 'X', 'Y', 'Z']
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
@@ -33,16 +36,16 @@ def save():
     email = email_entry.get()
     password = password_entry.get()
 
-    if len(website) or len(email) or len(password) == 0:
-        messagebox.showinfo(title="Oops",message = "Please don't leave any fields empty!")
+    if len(website) == 0 or len(password) == 0:
+        messagebox.showinfo(title="Oops", message="Please make sure you haven't left any fields empty.")
     else:
-        is_ok = messagebox.askokcancel(title = website, message = f"These are the details entered: \nEmail: {email} "
+        is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email} "
                                                       f"\nPassword: {password} \nIs it ok to save?")
         if is_ok:
-            with open("Day-20to29\Day-29\project-26-password-manager\data.txt" , mode= "a") as data_file :
-                data_file.write(f"{website} | {email} | {password} \n")
-            website_entry.delete(0,END)
-            password_entry.delete(0,END)
+            with open("Day-20to29\Day-29\project-27-password-manager\data.txt", "a") as data_file:
+                data_file.write(f"{website} | {email} | {password}\n")
+                website_entry.delete(0, END)
+                password_entry.delete(0, END)
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -51,7 +54,7 @@ window.title("Password Manager 🔑")
 window.config(padx=50,pady=50)
 
 canvas = Canvas(width=200,height=200)
-mypass_img = PhotoImage(file="Day-20to29\Day-29\project-26-password-manager\logo.png")
+mypass_img = PhotoImage(file="Day-20to29\Day-29\project-27-password-manager\logo.png")
 canvas.create_image(100,100,image=mypass_img)
 canvas.grid(column=1,row=0)
 

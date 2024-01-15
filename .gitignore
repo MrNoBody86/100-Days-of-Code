@@ -1,7 +1,6 @@
 *.vscode
 *.pdf
 *.json
-*.png
 *.pyc
 __pycache__/
 *.jpg
