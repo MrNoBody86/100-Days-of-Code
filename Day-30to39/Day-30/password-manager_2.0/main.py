@@ -39,15 +39,15 @@ def find_password():
             #Reading old data
             data = json.load(data_file)
     except FileNotFoundError:
-            messagebox.showinfo(title="FileNotFoundError", message="No Data File Found.")
+        messagebox.showinfo(title="FileNotFoundError", message="No Data File Found.")
     else :
-        for item in data :
-            if website == item.key :
-                messagebox.showinfo(title= website, message=f"These are the details entered: \nEmail: {item['email']} "
-                                                      f"\nPassword: {item['password']} ")
-
-
-
+        if website in data :
+            email = data[website]['email']
+            password = data[website]['password']
+            messagebox.showinfo(title= website, message=f"These are the details entered: \nEmail: {email} "
+                                                    f"\nPassword: {password} ")
+        else:
+            messagebox.showerror(title=website, message= "No details for the website exits.")
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
@@ -63,7 +63,8 @@ def save():
     }
 
     if len(website) == 0 or len(password) == 0:
-        messagebox.showinfo(title="Oops", message="Please make sure you haven't left any fields empty.")
+        messagebox.showinfo(title="Oops",
+                            message="Please make sure you haven't left any fields empty.")
     else:
         try :
             with open(FILE_PATH,encoding="utf-8",mode= "r") as data_file:
@@ -79,7 +80,7 @@ def save():
 
             with open(FILE_PATH,encoding="utf-8",mode= "w") as data_file:
                 # Saving updated data
-                json.dump(new_data, data_file,indent=4)
+                json.dump(data, data_file,indent=4)
         finally:
             website_entry.delete(0, END)
             password_entry.delete(0, END)
@@ -127,6 +128,6 @@ password_button.grid(column=2,row=3)
 add_button = Button(text="Add",width=36,command=save)
 add_button.grid(column=1,row=4,columnspan=2)
 
-search_button = Button(text="Search",width=14)
+search_button = Button(text="Search",width=14,command=find_password)
 search_button.grid(column=2,row=1)
 window.mainloop()
