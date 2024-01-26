@@ -22,8 +22,6 @@ def reset_timer():
     label_checkmark.config(text = "")
     canvas.itemconfig(timer_text,text="00:00")
     reps = 0
-    
-
 
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
