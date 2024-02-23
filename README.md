@@ -16,5 +16,5 @@ Python Bootcamp repo
 
 - The Blackjack game  : [Day - 11](Day-10to19/Day-11)
 - The Turtle Crossing : [Day - 23](Day-20to29/Day-23)
-- The Flash Card App : [Day -31](Day-30to39\Day-31\project-28-flash-card)
-- The Flight Deal Finder : [Day -39](Day-30to39\Day-39\project-35-flight-deals)
+- The Flash Card App : [Day -31](Day-30to39/Day-31/project-28-flash-card)
+- The Flight Deal Finder : [Day -39](Day-30to39/Day-39/project-35-flight-deals)
