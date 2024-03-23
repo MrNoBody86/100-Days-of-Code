@@ -12,6 +12,11 @@ Python Bootcamp repo
 - Intermediate (Day 15 - Day 31)
 - Intermediate+ (Day 32 - Day 57)
 
+### Web Foundations
+
+- Html (Day 41 - Day 42)
+- Css (Day 43 - Day 44)
+
 ## Capstone projects
 
 - The Blackjack game  : [Day - 11](Day-10to19/Day-11)
