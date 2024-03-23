@@ -27,9 +27,22 @@ for destination in sheet_data:
         to_time=six_month_from_today
     )
     if flight is None :
-        continue
+        flight = flight_search.check_for_indirect_flight(
+            ORIGIN_CITY_IATA,
+            destination["iataCode"],
+            from_time=tomorrow,
+            to_time=six_month_from_today
+        )
+        if int(flight.price)< int(destination["lowestPrice"]):
+            message=f"Low price alert! Only £{flight.price} to fly from {flight.origin_city}-{flight.origin_airport} to {flight.destination_city}-{flight.destination_airport}, from {flight.out_date} to {flight.return_date}.\nFlight has 1 stop over , via {flight.via_city}."
+
     else :
         if int(flight.price)< int(destination["lowestPrice"]):
-            notification_manager.send_sms(
-                message=f"Low price alert! Only £{flight.price} to fly from {flight.origin_city}-{flight.origin_airport} to {flight.destination_city}-{flight.destination_airport}, from {flight.out_date} to {flight.return_date}."
-            )
+            message=f"Low price alert! Only £{flight.price} to fly from {flight.origin_city}-{flight.origin_airport} to {flight.destination_city}-{flight.destination_airport}, from {flight.out_date} to {flight.return_date}."
+
+    user_data = data_manager.get_customer_email()
+
+    if int(flight.price)< int(destination["lowestPrice"]):
+        for user in user_data:
+            notification_manager.send_email(message=message,user=user["email"])
+
