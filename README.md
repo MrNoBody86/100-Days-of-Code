@@ -4,7 +4,7 @@ Python Bootcamp repo
 
 ## Completed Days
 
-- Day 1 to 41
+- Day 1 to 42
 
 ### Proficiency Level
 
