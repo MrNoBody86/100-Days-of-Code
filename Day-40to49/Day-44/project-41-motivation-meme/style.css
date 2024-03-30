@@ -1,0 +1,29 @@
+html {
+    background-color: black;
+}
+
+.img-one {
+    width: 100%;
+    border: 5px solid ;
+}
+
+.others{
+    color: white;
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+}
+
+.img-two {
+    width: 100%;
+    border: 5px solid ;
+}
+
+.actual {
+    color: white;
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+    font-size: larger;
+}
+
