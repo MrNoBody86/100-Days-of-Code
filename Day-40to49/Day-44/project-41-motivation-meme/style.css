@@ -12,10 +12,11 @@ html {
     width: 50%;
     margin-left: 25%;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .img-two {
-    width: 100%;
+    width: 85%;
     border: 5px solid ;
 }
 
@@ -24,6 +25,7 @@ html {
     width: 50%;
     margin-left: 25%;
     text-align: center;
-    font-size: larger;
+    font-size: 30px;
+    text-transform: uppercase;
 }
 
